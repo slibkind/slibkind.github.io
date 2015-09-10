@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis|Open+Sans:700,400,400italic);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #E6E6E6;
+}
+
+r {
+    font-style: italic;
+    color: #969696;
+}
+
+
+h1, h2, h3 {
+    font-family: 'Dosis', sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+.session {
+    width: 70%;
+    background-color: #FFFFFF;
+    padding: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+}
+
+
+.session-head {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.session-head h1, h3 {
+    padding: 0px;
+}
+
+
+
+.today {
+    padding-bottom: 20px;
+}
+
+.today h1 {
+    text-align: center;
+}
+
+.activity h1 {
+    font-family: 'Open Sans', san-serif;
+    text-align: left;
+    font-size: 100%;
+    font-weight: 700;
+}
+
+.activity p {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border: 2px solid #000;
+}
+
+.page h1 {
+    text-align: center;
+}
+
+.debrief h1 {
+    text-align: center;
+}
+
+.debrief h3 {
+    font-family: 'Open Sans', san-serif;
+    text-align: left;
+    font-size: 100%;
+    font-weight: 700;
+}
+
+.col1of2 {
+    width: 45%;
+    float: left;
+    margin: 2.5%;
+}
+
+.col2of2 {
+    width: 45%;
+    float: left;
+    margin: 2.5%;
+}
+
+
+
+.code {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    font-style: 'Consolas';
+    font-size: 300%;
+}
