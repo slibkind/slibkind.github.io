@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+        
+   {% include head.html %}
+
+   <body>
+
+
+       <div id="sidebar-wrapper">
+           <ul class="sidebar-nav" class="list-none">
+
+               <li class="sidebar-brand">6th Grade CS</li>
+               <hr>
+               <li class="sidebar-section">Tech Lab
+               <ul>
+                   <li><a href="{{ site.url }}grade-6/record-interview">Record StoryCorps Interview</a></li>
+               </ul>
+               </li>
+
+               <hr>
+
+               <li class="sidebar-section">First Scratch Project
+               <ul>
+                   <li><a href="{{ site.url }}grade-6/first-project/">First Project Assignment</a></li>
+                   <li><a href="{{ site.url }}grade-6/share-project/">Share Project</a></li>
+               </li>
+
+           </ul>
+       </div>
+
+
+       <div id="page-content-wrapper">
+
+           {{ content }}
+
+       </div>
+
+       
+       <!-- /.container -->
+       
+       <!-- jQuery Version 1.11.0 -->
+       <script src="http://slibkind.github.io/js/jquery-1.11.1.min.js"></script>
+       
+       <!-- Bootstrap Core JavaScript -->
+       <script src="http://slibkind.github.io/js/bootstrap.min.js"></script>
+   
+   </body>
+</html>
+
+
