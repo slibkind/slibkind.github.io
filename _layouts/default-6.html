@@ -5,35 +5,30 @@
 
    <body>
 
+       {% include nav-top.html %}
 
-       <div id="sidebar-wrapper">
-           <ul class="sidebar-nav" class="list-none">
+       <div class="row">
 
-               <li class="sidebar-brand">6th Grade CS</li>
-               <hr>
-               <li class="sidebar-section">Tech Lab
-               <ul>
-                   <li><a href="{{ site.url }}grade-6/record-interview">Record StoryCorps Interview</a></li>
-               </ul>
-               </li>
+           <div class="col-xs-1 col-sm-2 nav-side">
 
-               <hr>
 
-               <li class="sidebar-section">First Scratch Project
-               <ul>
-                   <li><a href="{{ site.url }}grade-6/first-project/">First Project Assignment</a></li>
-                   <li><a href="{{ site.url }}grade-6/share-project/">Share Project</a></li>
-               </li>
+                   {% include nav-side-6.html %}
 
-           </ul>
+
+           </div>
+
+           <div class="col-xs-11 col-sm-10">
+
+               <div class="content-wrapper">
+
+                   {{ content }}
+
+               </div>
+
+           </div>
        </div>
 
 
-       <div id="page-content-wrapper">
-
-           {{ content }}
-
-       </div>
 
        
        <!-- /.container -->
