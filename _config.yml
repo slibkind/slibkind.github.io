@@ -1,6 +1,7 @@
 title: "Sophie @ GMS"
 baseurl: ""
-url: "http://slibkind.github.io/"
+url: "http://127.0.0.1:4000/"
+
 github_username: slibkind 
 
 markdown: kramdown
