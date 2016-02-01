@@ -11,9 +11,9 @@ var bridge;
     
     ext._getStatus = function() {
 
-        //bridge = HueJS({
-        //    ipAddress: "10.180.30.178";
-        //});
+        bridge = HueJS({
+            ipAddress: "10.180.30.178";
+        });
 
         return {status: 2, msg: 'Ready'};
     };
