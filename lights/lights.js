@@ -1,6 +1,16 @@
-var bridge;
 
 (function(ext) {
+
+
+    var bridge = HueJS({
+        ipAddress:"10.180.30.178"
+    });
+
+    bridge.authenticate( function(){
+        alert('Authenticated');
+    }, function(){
+        alert('Not Authenticated');
+    });
 
     //Cleanup function when the extension is unloaded
     
@@ -10,12 +20,7 @@ var bridge;
     // Use this to report missing hardward, plugin or unsupported browser
     
     ext._getStatus = function() {
-
-        // bridge = HueJS({
-            // ipAddress: "10.180.30.178";
-        // });
-
-        return {status: 2, msg: 'Ready'};
+             return {status: 2, msg: 'Ready'};
     };
 
     ext.turn_onOff = function(direction, light) {
@@ -81,15 +86,15 @@ var bridge;
     
     ScratchExtensions.register('Scratch the lights', descriptor, ext);
 
-})({});
 
+})({});
 // ************************************** //
 // ********** HUE JS ******************** //
 // from https://github.com/bsalinas/huejs
 // ************************************** //
 
 
-HueJS = function(params){
+function HueJS(params){
 	"use strict";
 	var config = {
 		ipAddress : params.ipAddress,
@@ -381,7 +386,7 @@ HueJS = function(params){
 		*/
 		setBri = function(lightId, bri){
 			return setValue(lightId, {bri:bri});
-		};
+		},
 
         setXY = function(lightId, x, y){
             return setValue(lightId, {xy: [x, y]});

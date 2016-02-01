@@ -36,12 +36,16 @@
 
           bridge.authenticate( function(){
               alert("Successfully Authenticated");
+
+              console.log(bridge.getCache());
           },
           function(){
               alert("Error");
           });
 
       });
+
+      
 
           
 
