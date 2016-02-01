@@ -44,6 +44,11 @@ var bridge;
         }
     };
 
+    ext.set_colorXY = function(light, x, y) {
+
+        bridge.setXY(light, x, y);
+    };
+
             
 
 
@@ -58,6 +63,7 @@ var bridge;
 
             [' ', 'turn %m.onOff light %n', 'turn_onOff', 'on', 1],
             [' ', 'set light %n to color %m.colors', 'set_color', 1, 'white'],
+            [' ', 'set light %n to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
 
         ],
 
