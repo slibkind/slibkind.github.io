@@ -1,0 +1,124 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <title>{{ site.title }}</title>
+
+    <!-- Bootstrap -->
+    <link href="http://slibkind.github.io/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ site.url }}css/default.css" rel="stylesheet">
+    <link href="{{ site.url }}css/cover.css" rel="stylesheet">
+      
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+  #red, #green, #blue {
+    clear: left;
+    width: 80%;
+    height: 28px;
+    margin: 18px;
+  }
+  #red .ui-slider-range { background: #ef2929; }
+  #red .ui-slider-handle { border-color: #ef2929; height:36px;}
+  #green .ui-slider-range { background: #8ae234; }
+  #green .ui-slider-handle { border-color: #8ae234; height: 36px;}
+  #blue .ui-slider-range { background: #729fcf; }
+  #blue .ui-slider-handle { border-color: #729fcf; height: 36px;}
+
+
+  .nav-bar { background-color: #FFFFFF;}
+
+  </style>
+  <script>
+  function hexFromRGB(r, g, b) {
+    var hex = [
+      r.toString( 16 ),
+      g.toString( 16 ),
+      b.toString( 16 )
+    ];
+    $.each( hex, function( nr, val ) {
+      if ( val.length === 1 ) {
+        hex[ nr ] = "0" + val;
+      }
+    });
+    return hex.join( "" ).toUpperCase();
+}
+
+function xyFromRGB(r, g, b) {
+
+    var red = gammaCorrection(r);
+    var green  = gammaCorrection(g);
+    var blue = gammaCorrection(b);
+
+    var X = red * 0.664511 + green * 0.154324 + blue * 0.162028;
+    var Y = red * 0.283881 + green * 0.668433 + blue * 0.047685;
+    var Z = red * 0.000088 + green * 0.072310 + blue * 0.986039;
+    
+    var littleX = X/(X+Y+Z);
+    var littleY = Y/(X+Y+Z);
+
+    littleX = Math.round(littleX*10000)/10000;
+    littleY = Math.round(littleY*10000)/10000;
+
+    return [littleX, littleY];
+
+}
+
+function gammaCorrection(c) {
+
+    c = c/255.0;
+
+
+    if (c > 0.04045) {
+        c = Math.pow((c+0.055)/(1.0+0.55),2.4);
+    } else {
+        c = c/12.92;
+    }
+
+    return c;
+}
+
+
+  function refreshBackground() {
+    var red = $( "#red" ).slider( "value" ),
+      green = $( "#green" ).slider( "value" ),
+      blue = $( "#blue" ).slider( "value" ),
+      hex = hexFromRGB( red, green, blue ),
+      invHex = hexFromRGB(255-red, 255-green, 255-blue),
+      xy = xyFromRGB(red, green, blue);
+    document.body.style.backgroundColor = "#"+hex;
+    document.getElementById('hex-code').innerHTML = "#"+hex;
+    document.getElementById('hex-code').style.color = "#"+invHex;
+    document.getElementById('xy-code').style.color = "#"+invHex;
+    document.getElementById('xy-code').innerHTML = "X: "+xy[0]+", Y: "+xy[1];
+
+  }
+  $(function() {
+    $( "#red, #green, #blue" ).slider({
+      orientation: "horizontal",
+      range: "min",
+      max: 255,
+      value: 127,
+      slide: refreshBackground,
+      change: refreshBackground
+    });
+    $( "#red" ).slider( "value", 225 );
+    $( "#green" ).slider( "value", 30 );
+    $( "#blue" ).slider( "value", 140 );
+});
+
+
+
+  </script>
+</head>
