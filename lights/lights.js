@@ -25,6 +25,10 @@
 
     ext.turn_onOff = function(direction, light) {
 
+        if (light == 'all'){
+            light = [1,2,5,6,7,8];
+        }
+
         if (direction == 'on') {
             bridge.turnOn(light);
         } else if (direction == 'off') {
@@ -33,6 +37,10 @@
     };
 
     ext.set_color = function(light, color) {
+
+        if (light == 'all') {
+            light = [1,2,5,6,7,8];
+        }
 
         if (color == 'white') {
             bridge.setXY(light, 0.3227, 0.329);
@@ -54,9 +62,6 @@
         bridge.setXY(light, x, y);
     };
 
-            
-
-
 
     // Block and block menu descriptions
     
@@ -66,16 +71,17 @@
             
             // Block type, block name, function name, param 1, etc.
 
-            [' ', 'turn %m.onOff light %n', 'turn_onOff', 'on', 1],
-            [' ', 'set light %n to color %m.colors', 'set_color', 1, 'white'],
-            [' ', 'set light %n to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
+            [' ', 'turn %m.onOff light %m.lights', 'turn_onOff', 'on', 1],
+            [' ', 'set light %m.lights to color %m.colors', 'set_color', 1, 'white'],
+            //[' ', 'set light %n to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
 
         ],
 
         menus: {
 
             onOff: ['on', 'off'],
-            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow']
+            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow'],
+            lights: [1,2,5,6,7,8,'all']
 
         },
 
