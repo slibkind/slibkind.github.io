@@ -56,6 +56,8 @@
             bridge.setXY(light, 0.2725, 0.1096);
         } else if (color == 'orange') {
             bridge.setXY(light, 0.5614, 0.4156);
+        } else if (color == 'pink') {
+            bridge.setXY(light, 0.6108, 0.2581);
         }
     };
 
@@ -82,7 +84,7 @@
         menus: {
 
             onOff: ['on', 'off'],
-            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow', 'orange'],
+            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow', 'orange', 'pink'],
             lights: [1,2,5,6,7,8,'all']
 
         },
