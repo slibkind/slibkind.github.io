@@ -90,17 +90,14 @@
             if (bri < 1) {
                 bri = 1;
             }
-
             if (bri > 254) {
                 bri = 254;
             }
-
             bridge.setBri(light, bri);
         }
     };
 
     ext.set_colorXY = function(light, x, y) {
-
         bridge.setXY(light, x, y);
     };
 
@@ -442,7 +439,7 @@ function HueJS(params){
             return setValue(lightId, {xy: [x, y]});
         };
 
-        changeBri = function(lightId) {
+        getBri = function(lightId) {
             var rslt = getValue(lightId,"bri");
             return rslt[lightId]["bri"];
         }
