@@ -61,45 +61,51 @@
         }
     };
 
-    ext.set_brightness = function(light, bri) {
+    ext.set_colorXY = function(light, x, y) {
 
+        if (light == 'all') {
+            light = [1,2,5,6,7,8];
+        }
+
+        bridge.setXY(light, x, y);
+    };
+
+    ext.set_bri = function(light, bri) {
+        
         if (light == 'all') {
             light = [1,2,5,6,7,8];
         }
 
         if (bri > 254) {
             bri = 254;
-        }
-
-        if (bri < 1) {
+        } if (bri < 1) {
             bri = 1;
         }
 
-        bridge.setBri(light,bri);
+        bridge.setBri(light, bri);
     };
 
-    ext.change_brightness = function(light,bri_delta) {
-
+    ext.change_bri = function(light, bri_delta) {
         if (light == 'all') {
             light = [1,2,5,6,7,8];
+        } else {
+            light = [light];
         }
 
         for (var i = 0; i < light.length; i++) {
             var bri = bridge.getBri(light[i]);
             bri = bri + bri_delta;
-            if (bri < 1) {
+
+            if (bri > 254){
+                bri = 254;
+            } if (bri < 1) {
                 bri = 1;
             }
-            if (bri > 254) {
-                bri = 254;
-            }
-            bridge.setBri(light, bri);
+
+            bridge.setBri(light[i], bri);
         }
     };
 
-    ext.set_colorXY = function(light, x, y) {
-        bridge.setXY(light, x, y);
-    };
 
 
     // Block and block menu descriptions
@@ -113,8 +119,8 @@
             [' ', 'turn %m.onOff light %m.lights', 'turn_onOff', 'on', 1],
             [' ', 'set light %m.lights to color %m.colors', 'set_color', 1, 'white'],
             [' ', 'set light %m.lights to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
-            [' ', 'set light %m.lights to brightness %n', 'set_brightness', 1, 254],
-            [' ', 'change brightness of light %m.lights by %n', 'change_brightness', 1, 1],
+            [' ', 'set light %m.lights to brightness %n', 'set_bri', 1, 254],
+            [' ', 'change light %m.lights brightness by %n','change_bri', 1, 1],
 
         ],
 
@@ -437,12 +443,13 @@ function HueJS(params){
 
         setXY = function(lightId, x, y){
             return setValue(lightId, {xy: [x, y]});
-        };
+        },
 
-        getBri = function(lightId) {
-            var rslt = getValue(lightId,"bri");
-            return rslt[lightId]["bri"];
-        }
+        getBri = function(lightId){
+            return getValue(lightId, "bri")[lightId]["bri"];
+        };
+        
+        
 
         
 
