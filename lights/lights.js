@@ -43,15 +43,15 @@
         }
 
         if (color == 'white') {
-            bridge.setXY(light, 0.3227, 0.329);
+            bridge.setXY(light, 0.3548, 0.3489);
         } else if (color == 'red') {
             bridge.setXY(light, 0.7, 0.2986);
         } else if (color == 'blue') {
-            bridge.setXY(light, 0.139, 0.081);
+            bridge.setXY(light, 0.168, 0.041);
         } else if (color == 'green') {
-            bridge.setXY(light, 0.214, 0.709);
+            bridge.setXY(light, 0.408, 0.517); 
         } else if (color == 'yellow') {
-            bridge.setXY(light, 0.4432, 0.5154);
+            bridge.setXY(light, 0.4859, 0.4599);
         } else if (color == 'purple') {
             bridge.setXY(light, 0.2725, 0.1096);
         } else if (color == 'orange') {
