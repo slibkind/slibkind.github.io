@@ -43,15 +43,15 @@
         }
 
         if (color == 'white') {
-            bridge.setXY(light, 0.3548, 0.3489);
+            bridge.setXY(light, 0.3227, 0.329);
         } else if (color == 'red') {
             bridge.setXY(light, 0.7, 0.2986);
         } else if (color == 'blue') {
-            bridge.setXY(light, 0.168, 0.041);
+            bridge.setXY(light, 0.139, 0.081);
         } else if (color == 'green') {
-            bridge.setXY(light, 0.408, 0.517); 
+            bridge.setXY(light, 0.214, 0.709);
         } else if (color == 'yellow') {
-            bridge.setXY(light, 0.4859, 0.4599);
+            bridge.setXY(light, 0.4432, 0.5154);
         } else if (color == 'purple') {
             bridge.setXY(light, 0.2725, 0.1096);
         } else if (color == 'orange') {
@@ -63,8 +63,49 @@
 
     ext.set_colorXY = function(light, x, y) {
 
+        if (light == 'all') {
+            light = [1,2,5,6,7,8];
+        }
+
         bridge.setXY(light, x, y);
     };
+
+    ext.set_bri = function(light, bri) {
+        
+        if (light == 'all') {
+            light = [1,2,5,6,7,8];
+        }
+
+        if (bri > 254) {
+            bri = 254;
+        } if (bri < 1) {
+            bri = 1;
+        }
+
+        bridge.setBri(light, bri);
+    };
+
+    ext.change_bri = function(light, bri_delta) {
+        if (light == 'all') {
+            light = [1,2,5,6,7,8];
+        } else {
+            light = [light];
+        }
+
+        for (var i = 0; i < light.length; i++) {
+            var bri = bridge.getBri(light[i]);
+            bri = bri + bri_delta;
+
+            if (bri > 254){
+                bri = 254;
+            } if (bri < 1) {
+                bri = 1;
+            }
+
+            bridge.setBri(light[i], bri);
+        }
+    };
+
 
 
     // Block and block menu descriptions
@@ -77,7 +118,9 @@
 
             [' ', 'turn %m.onOff light %m.lights', 'turn_onOff', 'on', 1],
             [' ', 'set light %m.lights to color %m.colors', 'set_color', 1, 'white'],
-            //[' ', 'set light %n to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
+            [' ', 'set light %m.lights to color x: %n y: %n', 'set_colorXY', 1, 0.3227, 0.329],
+            [' ', 'set light %m.lights to brightness %n', 'set_bri', 1, 254],
+            [' ', 'change light %m.lights brightness by %n','change_bri', 1, 1],
 
         ],
 
@@ -400,7 +443,13 @@ function HueJS(params){
 
         setXY = function(lightId, x, y){
             return setValue(lightId, {xy: [x, y]});
+        },
+
+        getBri = function(lightId){
+            return getValue(lightId, "bri")[lightId]["bri"];
         };
+        
+        
 
         
 
@@ -416,6 +465,7 @@ function HueJS(params){
 			setHueSat : setHueSat,
 			setBri : setBri,
             setXY : setXY,
+            getBri : getBri,
 		};
 
 };
