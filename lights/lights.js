@@ -3,7 +3,7 @@
 
 
     var bridge = HueJS({
-        ipAddress:"192.168.1.100"
+        ipAddress:"10.180.30.169"
     });
 
     bridge.authenticate( function(){
