@@ -13,12 +13,12 @@
     });
 
     //Cleanup function when the extension is unloaded
-    
+
     ext._shutdown = function() {};
 
     // Status reporting code
     // Use this to report missing hardward, plugin or unsupported browser
-    
+
     ext._getStatus = function() {
              return {status: 2, msg: 'Ready'};
     };
@@ -49,7 +49,7 @@
         } else if (color == 'blue') {
             bridge.setXY(light, 0.168, 0.041);
         } else if (color == 'green') {
-            bridge.setXY(light, 0.408, 0.517); 
+            bridge.setXY(light, 0.408, 0.517);
         } else if (color == 'yellow') {
             bridge.setXY(light, 0.4859, 0.4599);
         } else if (color == 'purple') {
@@ -58,6 +58,8 @@
             bridge.setXY(light, 0.5614, 0.4156);
         } else if (color == 'pink') {
             bridge.setXY(light, 0.6108, 0.2581);
+        } else if (color == 'random') {
+            bridge.setXY(light, Math.random(), Math.random());
         }
     };
 
@@ -68,11 +70,11 @@
 
 
     // Block and block menu descriptions
-    
+
     var descriptor = {
 
         blocks: [
-            
+
             // Block type, block name, function name, param 1, etc.
 
             [' ', 'turn %m.onOff light %m.lights', 'turn_onOff', 'on', 1],
@@ -84,7 +86,7 @@
         menus: {
 
             onOff: ['on', 'off'],
-            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow', 'orange', 'pink'],
+            colors: ['white', 'red', 'blue', 'green', 'purple', 'yellow', 'orange', 'pink', 'random'],
             lights: [1,2,5,6,7,8,'all']
 
         },
@@ -93,7 +95,7 @@
 
 
     // Resgister the extension
-    
+
     ScratchExtensions.register('Scratch the lights', descriptor, ext);
 
 
@@ -110,12 +112,12 @@ function HueJS(params){
 		ipAddress : params.ipAddress,
 		devicetype : params.devicetype || "HueJS Client",
 		username : params.username || "22a828f1898a4257c3f181e753241337",
-		
+
 	},
 	baseUrl ="http://"+config.ipAddress+"/api/",
 	cache = {},
-	
-	
+
+
 	initialize = function(){
 		var valid = 0;
 		var description = "";
@@ -142,9 +144,9 @@ function HueJS(params){
 			}
 			else{
 				stat = e;
-				valid= 1;	
+				valid= 1;
 			}
-			
+
 		};
 		$.ajax({
 			url: baseUrl+config.username+'/',
@@ -214,9 +216,9 @@ function HueJS(params){
 				success: suc,
 				failure:failure,
 				dataType: 'JSON'
-			});	
+			});
 		}
-	
+
 	},
 	/**
 		 *  Function: doPost
@@ -285,7 +287,7 @@ function HueJS(params){
 				if(typeof attr == 'string'){
 					attr = [attr];
 				}
-				
+
 				for(var i in attr){
 					var thisAttr = attr[i];
 					//First see if it is a key in the top level
@@ -305,7 +307,7 @@ function HueJS(params){
 					}
 				}
 			}
-			
+
 			//{hue:123,sat:456,name:"ABC",bri:255}
 			return values;
 
@@ -318,7 +320,7 @@ function HueJS(params){
 		*	return: An object with the values requested broken up by light ID. i.e.{1:{bri:{success:true, value:123},hue:{success:true, value:456}}, 3:{bri:{success:true, value:123},hue:{success:true, value:456}}}
 		*		If the parameter can not be set, then a description will also be provided (instead of a value) and success will be false.
 		*		This only works for state parameters right now.
-		*/	
+		*/
 		setValue = function(lightId, attr){
 			if(typeof lightId == 'string' || typeof lightId == 'number'){
 				lightId = [lightId];
@@ -346,7 +348,7 @@ function HueJS(params){
 								}
 								results[light][addrSplit[addrSplit.length - 1]] = {success:true, value:thisResult.success[j]};
 							}
-							
+
 						}
 					}
 				}
@@ -356,7 +358,7 @@ function HueJS(params){
 			};
 			for(var thisLightIndex  in lightId){
 				var thisLightId = lightId[thisLightIndex];
-				
+
 				doPut('lights/'+thisLightId+'/state', attr, successHandler, failureHandler, false);
 			}
 			return results;
@@ -402,7 +404,7 @@ function HueJS(params){
             return setValue(lightId, {xy: [x, y]});
         };
 
-        
+
 
 
 		return{
