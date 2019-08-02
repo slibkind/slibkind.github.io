@@ -1,0 +1,27 @@
+
+#title{
+    margin: 0;
+    padding: 50px;
+    background-size: cover;
+    font-family: 'Futura';
+    font-size: 18px;
+}
+
+
+body{
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(17, 171, 109, 1);
+}
+
+a:hover {
+    color: rgba(17, 171, 109, .5);
+}
+
+
+li {
+    padding-bottom: 5px;
+}
