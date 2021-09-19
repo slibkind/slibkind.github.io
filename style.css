@@ -3,7 +3,7 @@
     margin: 0;
     padding: 50px;
     background-size: cover;
-    background-color: rgba(240, 240, 240, .25);
+    background-color: #F4F4F4    ;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -34,11 +34,11 @@ ul, h4 {
 
 a {
     text-decoration: none;
-    color: rgb(194, 101, 219);
+    color: #279989;
 }
 
 a:hover {
-    color: rgba(194, 101, 219, .5);
+    color: #017E7C;
 }
 
 
